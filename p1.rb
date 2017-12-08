@@ -1,53 +1,35 @@
-boxes = eval(gets.chomp.tr('(', '[').tr(')', ']'))
-max_height = boxes.map { |box| 3 + box[1] + box[2] }.max
-
-num_conveyor_rows = 2 + boxes[0][1]
-
-for num in max_height.downto(1)
-  for box in boxes
-    box_height = 3 + box[1] + box[2]
-    box_width = 3 + box[0] + box[1]
-
-    # Print all spaces for box, it's too short
-    if num > box_height
-      print ' ' * box_width
-    # Preceding spaces
-    elsif num > num_conveyor_rows && num > 2 + box[2]
-      print ' ' * (box[1] + 1 - (box_height - num))
-    # print preceding conveyor lines
-    elsif num <= num_conveyor_rows && num > 2 + box[2]
-      print '_' * (num - 2 - box[2])
+a=eval(gets.chomp.tr('(','[').tr(')',']'))
+b=2+a[0][1]
+for c in a.map{|z|3+z[1]+z[2]}.max.downto(1)
+  for d in a
+    e=3+d[1]+d[2]
+    if c>e
+      print ' '*(3+d[0]+d[1])
+    elsif c>b&&c>2+d[2]
+      print ' '*(d[1]+1-(e-c))
+    elsif c<=b&&c>2+ d[2]
+      print '_'*(c-2-d[2])
     end
-  
-    # Top row
-    if num == 3 + box[1] + box[2]
-      print '+' + '-' * box[0] + '+'
-    # Slants
-    elsif num < 3 + box[1] + box[2] && num > 2 + box[2]
-      print '/' + ' ' * box[0] + '/'
-    #Middle row
-    elsif num == 2 + box[2]
-      print '+' + '-' * box[0] + '+'
-    # front
-    elsif num < 2 + box[2] && num > 1
-      print '|' + ' ' * box[0] + '|'
-    # bottom row
-    elsif num == 1
-      print '+' + '-' * box[0] + '+'
+    if c==3+d[1]+d[2]
+      print '+'+'-'*d[0]+'+'
+    elsif c<3+d[1]+d[2]&&c>2+d[2]
+      print '/'+' '*d[0]+'/'
+    elsif c==2+d[2]
+      print '+'+'-'*d[0]+'+'
+    elsif c<2+d[2]&&c>1
+      print '|'+' '*d[0]+'|'
+    elsif c==1
+      print '+'+'-'*d[0]+'+'
     end
-
-    # Back line of box, if needed
-    if num < box_height && num > box[1] + 2
-      print ' ' * [(box_height - 1 - num), box[2], box[1]].min  + '|'
-    elsif num == box[1] + 2
-      print ' ' * [box[1], box[2], box[1]].min + '+'
-    elsif num < box[1] + 2 && num > 1
-      print ' ' * [(num - 2), box[2], box[1]].min + '/'      
+    if c<e&&c>d[1]+2
+      print ' '*[(e-1-c),d[2],d[1]].min+'|'
+    elsif c==d[1]+2
+      print ' '*[d[1],d[2],d[1]].min+'+'
+    elsif c<d[1]+2&&c>1
+      print ' '*[(c-2),d[2],d[1]].min+'/'
     end
-
-    # Trailing conveyor lines, or just one space
-    if num <= num_conveyor_rows && !box.equal?(boxes.last)
-      print '_' * (num_conveyor_rows - num + 1)
+    if c<=b
+      print '_'*(b-c+1)
     else
       print ' '
     end
