@@ -1,9 +1,5 @@
-Run first solution with `ruby p1.rb`.
+Run first solution with `python p1.py`.
 
-Enter the dimensions as input in a format such as: `[(5, 3, 4), (8, 3, 1), (1, 3, 7)]`
+Input the box dimensions as follows: `[(5, 3, 4), (8, 3, 1), (1, 3, 7)]`
 
-Run second solution with `rube p1.rb`
-
-Enter the first array in a format such as: `[5, 3, 8, 6, 2, 7]`
-
-Then enter the list of ranges in a format such as: `[[1, 3], [4, 5], [6, 7]]`
+Run second solution with `ruby -r "./p2.rb" -e "a [7, 3, 5, 4, 6, 1, 2], [[1, 3], [4, 5], [6, 7]]"`
